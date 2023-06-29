@@ -21,10 +21,7 @@ public class BoardService {
     private final BoardRepository repository;
     private final CommentRepository commentRepo;
 
-//    public List<BoardResponseDto> getContent() {
-//        //db에 있는 데이터들 List형태로 보내기
-//        return repository.findAllByOrderByModifiedAtDesc().stream().map(BoardResponseDto::new).toList();
-//    }
+
 
 
     public List<BoardResponseDto> getContent() {

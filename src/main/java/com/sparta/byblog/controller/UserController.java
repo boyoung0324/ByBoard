@@ -33,17 +33,11 @@ public class UserController {
 
         service.signup(requestDto);
 
-        if(error.size() > 0)
+        if (error.size() > 0)
             return new ResponseEntity("회원가입이 실패했습니다.", HttpStatus.BAD_REQUEST);
 
         return new ResponseEntity("회원가입이 완료되었습니다.", HttpStatus.OK);
     }
-
-    //로그인
-
-
-
-
 
 
 

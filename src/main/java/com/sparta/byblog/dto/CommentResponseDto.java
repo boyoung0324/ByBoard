@@ -1,6 +1,5 @@
 package com.sparta.byblog.dto;
 
-import com.sparta.byblog.entity.Board;
 import com.sparta.byblog.entity.Comment;
 import lombok.Getter;
 import lombok.Setter;

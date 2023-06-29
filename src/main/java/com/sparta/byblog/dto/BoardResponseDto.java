@@ -16,7 +16,7 @@ public class BoardResponseDto {
     private String writer;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
-    private List<Comment> commentList;
+//    private List<Comment> commentList; 넣으니까 조회 실행이 안 돼서 주석함ㅠ
 
     public BoardResponseDto(Board board) {
         this.bno = board.getBno();
@@ -25,23 +25,8 @@ public class BoardResponseDto {
         this.writer = board.getUser().getId();
         this.createdAt = board.getCreatedAt();
         this.modifiedAt = board.getModifiedAt();
-        this.commentList = board.getCommentList();
+//        this.commentList = board.getCommentList();
     }
-
-
-
-    public BoardResponseDto(Board board,List<Comment> commentList) {
-        this.bno = board.getBno();
-        this.title = board.getTitle();
-        this.content = board.getContent();
-        this.writer = board.getUser().getId();
-        this.createdAt = board.getCreatedAt();
-        this.modifiedAt = board.getModifiedAt();
-        this.commentList = commentList;
-    }
-
-
-
 
 
 }

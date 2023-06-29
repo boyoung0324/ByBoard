@@ -36,22 +36,12 @@ public class UserService {
         }
 
 
-        //관리자
-//        UserRoleEnum role = UserRoleEnum.USER;
-//        if (requestDto.isAdmin()) { //True면 관리자임
-//            if (!ADMIN_TOKEN.equals(requestDto.getAdminToken())) {
-//                throw new IllegalArgumentException("관리자 암호가 틀려 등록이 불가능합니다.");
-//            }
-//            role = UserRoleEnum.ADMIN;
-//        }
-
         UserRoleEnum role = UserRoleEnum.USER;
 
 
         if (ADMIN_TOKEN.equals(requestDto.getRole())) {
             role = UserRoleEnum.ADMIN;
         }
-
 
 
         User user = new User(username, id, pwd, role);

@@ -21,46 +21,39 @@ public class BoardService {
     private final BoardRepository repository;
     private final CommentRepository commentRepo;
 
+//    public List<BoardResponseDto> getContent() {
+//        //db에 있는 데이터들 List형태로 보내기
+//        return repository.findAllByOrderByModifiedAtDesc().stream().map(BoardResponseDto::new).toList();
+//    }
+
+
     public List<BoardResponseDto> getContent() {
         //db에 있는 데이터들 List형태로 보내기
-        return repository.findAllByOrderByModifiedAtDesc().stream().map(BoardResponseDto::new).toList();
-
-
+        List<Board> list = repository.findAllByOrderByModifiedAtDesc();
+        List<BoardResponseDto> boardList = list.stream().map(BoardResponseDto::new).toList();
+        return boardList;
     }
 
 
     //해당 번호에 맞는 글 찾기
+    public BoardResponseDto findContentComment(Integer bno) {
+        Board board = repository.findById(bno).orElseThrow(() ->
+                new IllegalArgumentException("선택한 메모가 존재하지 않습니다."));
+        return new BoardResponseDto(board);
+    }
+
+
+
     public Board findContent(Integer bno) {
         return repository.findById(bno).orElseThrow(() ->
                 new IllegalArgumentException("선택한 메모가 존재하지 않습니다."));
     }
 
 
-    public ResponseEntity<List<BoardResponseDto>> findContentandComment(Integer bno) { //댓글까지 같이 나옴
-        // db
-//        Board board =  repository.findById(bno).orElseThrow(() ->
-//                new IllegalArgumentException("선택한 메모가 존재하지 않습니다."));
-//
-//        System.out.println("board = " + board.getCommentList());
-//
-//        BoardResponseDto responseDto = new BoardResponseDto(board);
-//        return responseDto;
-        List<BoardResponseDto> list = repository.findByBno(bno);
-        return new ResponseEntity<List<BoardResponseDto>>(list, HttpStatus.OK);
-
-
-
-    }
-
-
-
-
 
 
 
     //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-
-
 
 
     //작성

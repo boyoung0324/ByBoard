@@ -1,5 +1,6 @@
 package com.sparta.byblog.security;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sparta.byblog.jwt.JwtUtil;
 import com.sparta.byblog.security.UserDetailsServiceImpl;
 import io.jsonwebtoken.Claims;
@@ -23,10 +24,13 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
 
     private final JwtUtil jwtUtil;
     private final UserDetailsServiceImpl userDetailsService;
+    private final ObjectMapper objectMapper;
 
-    public JwtAuthorizationFilter(JwtUtil jwtUtil, UserDetailsServiceImpl userDetailsService) {
+
+    public JwtAuthorizationFilter(JwtUtil jwtUtil, UserDetailsServiceImpl userDetailsService,ObjectMapper objectMapper) {
         this.jwtUtil = jwtUtil;
         this.userDetailsService = userDetailsService;
+        this.objectMapper = objectMapper;
     }
 
     @Override

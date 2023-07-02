@@ -1,11 +1,12 @@
 package com.sparta.byblog.dto;
 
 import com.sparta.byblog.entity.Board;
-import com.sparta.byblog.entity.Comment;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Getter
@@ -16,7 +17,7 @@ public class BoardResponseDto {
     private String writer;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
-//    private List<Comment> commentList; 넣으니까 조회 실행이 안 돼서 주석함ㅠ
+    private List<CommentResponseDto> commentList;
 
     public BoardResponseDto(Board board) {
         this.bno = board.getBno();
@@ -25,8 +26,12 @@ public class BoardResponseDto {
         this.writer = board.getUser().getId();
         this.createdAt = board.getCreatedAt();
         this.modifiedAt = board.getModifiedAt();
-//        this.commentList = board.getCommentList();
-    }
+        this.commentList = board.getCommentList().stream()
+                .map(CommentResponseDto::new)
+                .sorted(Comparator.comparing(CommentResponseDto::getCreatedAt).reversed())
+                .collect(Collectors.toList());
 
+
+    }
 
 }

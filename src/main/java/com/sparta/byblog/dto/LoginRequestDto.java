@@ -1,5 +1,6 @@
 package com.sparta.byblog.dto;
 
+import com.sparta.byblog.entity.UserRoleEnum;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,4 +12,6 @@ public class LoginRequestDto {
     private String id;
     @NotBlank
     private String pwd;
+    @NotBlank
+    private UserRoleEnum role;
 }

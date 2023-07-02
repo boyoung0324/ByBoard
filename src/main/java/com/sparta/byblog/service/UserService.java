@@ -1,5 +1,6 @@
 package com.sparta.byblog.service;
 
+import com.sparta.byblog.dto.LoginRequestDto;
 import com.sparta.byblog.dto.SignupRequestDto;
 import com.sparta.byblog.entity.User;
 import com.sparta.byblog.entity.UserRoleEnum;
@@ -51,4 +52,17 @@ public class UserService {
     }
 
 
+    public void login(LoginRequestDto requestDto) {
+        String id = requestDto.getId();
+        String pwd = requestDto.getPwd();
+
+        User user = repository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("등록된 사용자가 없습니다")
+        );
+
+        if (!passwordEncoder.matches(pwd, user.getPwd())) {
+            throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
+        }
+
+    }
 }

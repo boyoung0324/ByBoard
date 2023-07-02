@@ -5,14 +5,12 @@ import com.sparta.byblog.dto.BoardResponseDto;
 import com.sparta.byblog.entity.Board;
 import com.sparta.byblog.entity.User;
 import com.sparta.byblog.repository.BoardRepository;
-import com.sparta.byblog.repository.CommentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.concurrent.RejectedExecutionException;
-
 @Service
 @RequiredArgsConstructor
 public class BoardService {
